@@ -16,3 +16,5 @@ To install this app:
 Go to the terminal type npm install
 
 Once all the dependencies are installed type npm start
+
+---
