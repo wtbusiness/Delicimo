@@ -1,20 +1,10 @@
 import React from 'react';
 import "./Business.css";
 
-const business = {
-  imageSrc: "https://i.imgur.com/QDw2hsn.jpg",
-  name: "Delicimo Pizza",
-  address: "5040 Ellington Way",
-  city: "Pizzaville",
-  state: "NY",
-  zipCode: "17098",
-  category: "Italian",
-  rating: 4.7,
-  reviewCount: 95,
-};
 
 class Business extends React.Component {
     render() {
+        const { business } = this.props;
         return (
           <div className="Business">
             <div className="image-container">
