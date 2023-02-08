@@ -8,51 +8,67 @@ const sortByOptions = {
 };
 
 class SearchBar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            term: '',
-            location: '',
-            sortBy: 'best_match',
-        };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      term: "",
+      location: "",
+      sortBy: "best_match",
+    };
+    this.handleTermChange = this.handleTermChange.bind(this);
+     this.handleLocationChange = this.handleLocationChange.bind(this);
+  }
 
-    getSortByClass(sortByOption) {
-        if (sortByOption === this.state.sortBy) {
-            return 'active';
-        }
-        return '';
-    }
+  handleTermChange(event) {
+    this.setState({ term: event.target.value });
+  }
 
-    handleSortByChange(sortByOption) {
-        this.setState({sortBy: sortByOption });
-    }
+  handleLocationChange(event) {
+    this.setState({ location: event.target.value });
+  }
 
-    renderSortByOptions() {
-        return Object.keys(sortByOptions).map(sortByOption => {
-            let sortByOptionValue = sortByOptions[sortByOption];
-            return <li key={sortByOptionValue} onClick={this.handleSortByChange.bind(this, sortByOptionValue)} className={this.getSortByClass(sortByOptionValue)}>{sortByOption}</li>
-        });
+  getSortByClass(sortByOption) {
+    if (sortByOption === this.state.sortBy) {
+      return "active";
     }
+    return "";
+  }
 
-    render() {
-        return (
-            <div class="SearchBar">
-  <div className="SearchBar-sort-options">
-    <ul>
-     {this.renderSortByOptions()}
-    </ul>
-  </div>
-  <div className="SearchBar-fields">
-    <input placeholder="Search Businesses" />
-    <input placeholder="Where?" />
-  </div>
-  <div className="SearchBar-submit">
-    <a href="www.#.com">Let's Go</a>
-  </div>
-</div>
-        )
-    }
+  handleSortByChange(sortByOption) {
+    this.setState({ sortBy: sortByOption });
+  }
+
+  renderSortByOptions() {
+    return Object.keys(sortByOptions).map((sortByOption) => {
+      let sortByOptionValue = sortByOptions[sortByOption];
+      return (
+        <li
+          key={sortByOptionValue}
+          onClick={this.handleSortByChange.bind(this, sortByOptionValue)}
+          className={this.getSortByClass(sortByOptionValue)}
+        >
+          {sortByOption}
+        </li>
+      );
+    });
+  }
+
+  render() {
+    return (
+      <div class="SearchBar">
+        <div className="SearchBar-sort-options">
+          <ul>{this.renderSortByOptions()}</ul>
+        </div>
+        <div className="SearchBar-fields">
+          <input placeholder="Search Businesses" />
+          <input placeholder="Where?" />
+        </div>
+        <div className="SearchBar-submit">
+          <a href="www.#.com">Let's Go</a>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default SearchBar;
